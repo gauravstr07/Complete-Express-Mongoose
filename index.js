@@ -23,9 +23,9 @@ const saveInDb = async () => {
   //Adding Data in DB
   const ProductModel = mongoose.model("products", ProductSchema);
   let data = new ProductModel({
-    name: "iPhone 6s",
-    price: 1600,
-    brand: "Apple",
+    name: "Galaxy s21 ultra",
+    price: 2900,
+    brand: "Samsung",
     category: "Mobile",
   });
   // let result = await data.save();
@@ -49,7 +49,14 @@ const saveInDb = async () => {
     let data = await Product.deleteOne({ name: "Redmi 10A" });
     console.log(data);
   };
-  deleteInDB();
+  // deleteInDB();
+
+  const findInDb = async () => {
+    let Product = mongoose.model("products", ProductSchema);
+    let data = await Product.find({});
+    console.log(data);
+  };
+  findInDb();
 };
 
 saveInDb();

@@ -12,24 +12,39 @@ mongoose
     console.log(`Something went wrong in DB 😪 --------- ${err}`);
   });
 
-const save = async () => {
-  const Product = new mongoose.Schema({
+const saveInDb = async () => {
+  const ProductSchema = new mongoose.Schema({
     name: String,
     price: Number,
     beand: String,
     category: String,
   });
 
-  const ProductModel = mongoose.model("products", Product);
+  //Adding Data in DB
+  const ProductModel = mongoose.model("products", ProductSchema);
   let data = new ProductModel({
     name: "Redmi 9A",
     price: 1100,
     brand: "MI",
     category: "Mobile",
   });
+  // let result = await data.save();
+  // console.log(result);
 
-  let result = await data.save();
-  console.log(result);
+ //Updaye In DB
+  const updateInDB = async() => {
+    const Product = mongoose.model('products', ProductSchema);
+    let data = await Product.updateOne(
+      {name: "Redmi 10A"},
+      {
+        $set:{name: "Redmi 10A", price: 1200}
+      }
+    )
+    console.log(data);
+  }
+  updateInDB();
 };
 
-save();
+saveInDb();
+
+

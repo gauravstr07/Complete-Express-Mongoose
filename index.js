@@ -23,28 +23,33 @@ const saveInDb = async () => {
   //Adding Data in DB
   const ProductModel = mongoose.model("products", ProductSchema);
   let data = new ProductModel({
-    name: "Redmi 9A",
-    price: 1100,
-    brand: "MI",
+    name: "iPhone 6s",
+    price: 1600,
+    brand: "Apple",
     category: "Mobile",
   });
   // let result = await data.save();
   // console.log(result);
 
- //Updaye In DB
-  const updateInDB = async() => {
-    const Product = mongoose.model('products', ProductSchema);
+  //Updaye In DB
+  const updateInDB = async () => {
+    const Product = mongoose.model("products", ProductSchema);
     let data = await Product.updateOne(
-      {name: "Redmi 10A"},
+      { name: "Redmi 10A" },
       {
-        $set:{name: "Redmi 10A", price: 1200}
+        $set: { name: "Redmi 10A", price: 1200 },
       }
-    )
+    );
     console.log(data);
-  }
-  updateInDB();
+  };
+  // updateInDB();
+
+  const deleteInDB = async () => {
+    let Product = mongoose.mongoose.model("products", ProductSchema);
+    let data = await Product.deleteOne({ name: "Redmi 10A" });
+    console.log(data);
+  };
+  deleteInDB();
 };
 
 saveInDb();
-
-
